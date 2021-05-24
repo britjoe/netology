@@ -30,7 +30,7 @@ temp = []
 result = []
 for meal, rec in cook_book.items():
     temp = temp + rec
-    
+
 temp_2 = dict()
 for product in temp:
     ingridient_name, quantity, measure = product.values()
