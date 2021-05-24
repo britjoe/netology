@@ -100,13 +100,12 @@ def m_move_doc(doc_num, doc_shelf):
 
         if if_doc_exist is None:
             print('Документ не найден в базе.\nТекущий список документов:')
-            l_show_all_docs()
         else:
             old_shelf = s_get_shelf_by_doc(doc_num)
             shelves.get(old_shelf).remove(doc_num)
             shelves.get(doc_shelf).append(doc_num)
             print('Документ перемещен.\nТекущий список документов:')
-            l_show_all_docs()
+        l_show_all_docs()
 
 
 def input_command():
