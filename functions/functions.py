@@ -84,10 +84,9 @@ def d_delete_doc(doc_num):
 
     if doc_for_delete is not None:
         print('Документ удален.\nТекущий список документов:')
-        l_show_all_docs()
     else:
         print('Документ не найден в базе.\nТекущий список документов:')
-        l_show_all_docs()
+    l_show_all_docs()
 
 
 def m_move_doc(doc_num, doc_shelf):
