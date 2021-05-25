@@ -93,12 +93,7 @@ def m_move_doc(doc_num, doc_shelf):
     if doc_shelf not in shelves.keys():
         print(f'Такой полки существует. Текущий перечень полок: {", ".join(shelves.keys())}')
     else:
-        if_doc_exist = None
-        for i in documents:
-            if doc_num == i.get('number'):
-                if_doc_exist = i
-
-        if if_doc_exist is None:
+        if p_get_owner_by_doc(doc_num) is None:
             print('Документ не найден в базе.\nТекущий список документов:')
         else:
             old_shelf = s_get_shelf_by_doc(doc_num)
