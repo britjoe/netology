@@ -1,4 +1,4 @@
-my_list = ['a', 'b', 'c', 'd', 'e', 'f']
+my_list = ['moscow_times', 'b', 'c', 'd', 'e', 'f']
 
 my_list.reverse()
 prev_val = None
