@@ -24,14 +24,19 @@ for i in stream:
 
 
 def date_range(start_date, end_date):
-    start_date = datetime.strptime(start_date, '%Y-%m-%d')
-    end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    cnt_days = (end_date - start_date).days
     date_list = []
-    for i in range(cnt_days - 1): ## - 1 для невключения последней даты
-        new_date = start_date + timedelta(days=i + 1)  ## + 1 для невключения первой даты
-        date_list.append(datetime.strftime(new_date, '%Y-%m-%d'))
-    return date_list
+    if check_date(start_date) and check_date(end_date):
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        cnt_days = (end_date - start_date).days
+        if cnt_days <= 0:
+            return date_list
+        for i in range(cnt_days - 1):  ## - 1 для невключения последней даты
+            new_date = start_date + timedelta(days=i + 1)  ## + 1 для невключения первой даты
+            date_list.append(datetime.strftime(new_date, '%Y-%m-%d'))
+        return date_list
+    else:
+        return date_list
 
 
 start_date = '2017-12-30'
