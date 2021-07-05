@@ -1,13 +1,16 @@
 # coding: utf-8
 import requests
 
+
 def my_sum(x, y):
-    return x+y
+    return x + y
+
 
 class Rate:
-    def __init__(self, format='value'):
+    def __init__(self, format='value', diff=False):
         self.format = format
-    
+        self.diff = diff
+
     def exchange_rates(self):
         """
         Возвращает ответ сервиса с информацией о валютах в виде:
@@ -25,9 +28,9 @@ class Rate:
             ...
         }
         """
-        r = requests.get('https://www.cbr-xml-daily.ru/daily_json.js')
+        r = requests.get('https://www.cbr-xml-daily.ru/daily_json.js', verify=False)
         return r.json()['Valute']
-    
+
     def make_format(self, currency):
         """
         Возвращает информацию о валюте currency в двух вариантах:
@@ -47,20 +50,21 @@ class Rate:
         79.4966
         """
         response = self.exchange_rates()
-        
+
         if currency in response:
             if self.format == 'full':
                 return response[currency]
-            
-            if self.format == 'value':
+
+            if self.format == 'value' and not self.diff:
                 return response[currency]['Value']
-        
+            elif self.format == 'value' and self.diff:
+                return round(response[currency]['Value'] - response[currency]['Previous'], 4)
         return 'Error'
-    
+
     def eur(self):
         """Возвращает курс евро на сегодня в формате self.format"""
         return self.make_format('EUR')
-    
+
     def usd(self):
         """Возвращает курс доллара на сегодня в формате self.format"""
         return self.make_format('USD')
