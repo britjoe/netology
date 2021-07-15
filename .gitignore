@@ -1,2 +1,4 @@
 req.py
 req2.py
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
